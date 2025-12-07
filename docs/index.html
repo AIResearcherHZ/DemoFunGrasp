@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="DemoFunGrasp: Universal Dexterous Functional Grasping via Demonstration-Editing Reinforcement Learning">
+  <meta property="og:title" content="DemoFunGrasp" />
+  <meta property="og:url" content="https://beingbeyond.github.io/DemoFunGrasp/" />
+  <meta name="keywords" content="Dexterous Grasping, Reinforcement Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DemoFunGrasp</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="images/icon/favicon.ico">
+
+  <link rel="preload" as="video" href="video/01.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/02.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/03.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/04.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/05.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/06.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/07.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/08.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/09.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/10.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/11.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/12.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/13.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/14.mp4" type="video/mp4">
+  <link rel="preload" as="video" href="video/15.mp4" type="video/mp4">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FC1STJNFMS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FC1STJNFMS');
+  </script>
+
+  <style>
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      /* Space out the pairs of videos */
+      width: 60%;
+      margin: 0 auto;
+      /* Center the container */
+      padding: 0 20px;
+      /* Add padding on the sides for smaller screens */
+    }
+
+    .video-two {
+      width: 48%;
+      /* Adjust width slightly for spacing */
+      margin-bottom: 20px;
+      /* Space between rows */
+    }
+
+    .video-group {
+      width: 31%;
+      /* Adjust width slightly for spacing */
+      margin-bottom: 20px;
+    }
+
+    .video-pair {
+      width: 23%;
+      /* Adjust width slightly for spacing */
+      margin-bottom: 20px;
+      /* Space between rows */
+    }
+
+    .video-pair video {
+      width: 100%;
+      /*Video itself occupies full-width of parent (.video-pair)*/
+      height: auto;
+      display: block;
+      /* Important for consistent sizing/spacing*/
+    }
+
+    .video-label {
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .video-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    /* 一行五个视频 */
+    .video-row {
+      display: flex;
+      gap: 12px;                 /* 每段视频之间的间距 */
+      justify-content: center;   /* 居中整行 */
+      align-items: flex-start;
+    }
+    .video-row .item {
+      flex: 0 0 18%;             /* 五个并排 */
+      max-width: 18%;
+    }
+    .video-row video {
+      width: 100%;
+      height: auto;              /* 保持比例 */
+      display: block;
+      border-radius: 6px;        /* 可选的小圆角 */
+    }
+
+    /* 小屏时自动换行，两列显示 */
+    @media (max-width: 768px) {
+      .video-row { flex-wrap: wrap; }
+      .video-row .item { flex: 0 0 48%; max-width: 48%; }
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/bulma.min.css">
+  <link rel="stylesheet" href="./css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./js/fontawesome.all.min.js"></script>
+  <script src="./js/bulma-carousel.min.js"></script>
+  <script src="./js/bulma-slider.min.js"></script>
+  <script src="./js/index.js"></script>
+</head>
+
+<body>
+
+
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 5rem;">
+            <style>
+              .gradient-title span {
+                font-family: 'apple-system', Times, serif;
+                font-weight: bold;
+                /* 调整字距，避免重叠但仍保持紧凑 */
+                letter-spacing: -0.08em;
+                background: linear-gradient(90deg, #ff7acb, #b388ff, #6bbcff);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: inline-block;
+                position: relative;
+              }
+            </style>
+
+            <span class="gradient-title">
+              <!-- 在这里修改标题文字，如 DemoFunGrasp -->
+              <span>DemoFunGrasp</span>
+            </span>
+          </h1>
+          <h1 class="subtitle is-1 publication-title is-size-3-mobile" style="font-size: 2.5rem; color: black;">
+              Universal Dexterous Functional Grasping via Demonstration-Editing Reinforcement Learning
+          </h1>
+
+            <h1>
+              <div class="is-size-4 publication-authors is-size-5-mobile">
+                <span class="author-block">
+                    <a href="">Chuan Mao</a><sup>1</sup>&nbsp;&nbsp;
+                </span>
+                <span class="author-block">
+                    <a href="https://yhqpkueecs.github.io/">Haoqi Yuan</a><sup>1,2</sup>&nbsp;&nbsp;
+                </span>
+                <span class="author-block">
+                    <a href="">Ziye Huang</a><sup>1,2</sup>&nbsp;&nbsp;
+                </span>
+                <span class="author-block">
+                    <a href="https://co1one.github.io/">Chaoyi Xu</a><sup>2</sup>&nbsp;&nbsp;
+                </span>
+                <span class="author-block">
+                    <a href="">Kai Ma</a><sup>1</sup>&nbsp;&nbsp;
+                </span>
+                <span class="author-block">
+                    <a href="https://z0ngqing.github.io/">Zongqing Lu</a><sup>&sect;1,2</sup>
+                </span>
+              </div>
+            </h1>
+            <h1>
+              <br>
+              <div class="is-size-4 publication-authors is-size-5-mobile">
+                <span class="author-block" style="font-size: 100%"> <sup>1</sup>Peking University </span>&nbsp;&nbsp;&nbsp;
+                <span class="author-block" style="font-size: 100%"> <sup>2</sup>BeingBeyond </span>
+              </div>
+            </h1>
+            <h1>
+              <div class="is-size-5 publication-authors is-size-6-mobile">
+                <span class="author-block"><small><br><sup>&sect;</sup>Corresponding Author</small></span>
+              </div>
+            </h1>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2509.22149"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://arxiv.org/abs/2509.22149"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="https://github.com/BeingBeyond/DemoFunGrasp"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Project</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- 视频展示 -->
+
+  <section class="section">
+    <div class="container">
+      <h2 class="title is-3 has-text-centered">Video Gallery</h2>
+      <div class="video-grid">
+        <div class="video-row">
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/01.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Dish soap bottle</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/02.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Bouquet</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/03.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Pan</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/04.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Toolbox</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/05.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Kettle</p>
+          </div>
+        </div>
+        <div class="video-row">
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/06.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Yellow Teapot</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/07.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Rasp</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/08.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Brown Teapot</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/09.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Wooden Holder</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/10.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Saucepan</p>
+          </div>
+        </div>
+        <div class="video-row">
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/11.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Watering Pitcher</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/12.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Bowl</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/13.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Small Bucket</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/14.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Hand Sanitizer Bottle</p>
+          </div>
+          <div class="item">
+            <video muted autoplay loop playsinline>
+              <source src="./video/15.mp4" type="video/mp4">
+            </video>
+            <p class="video-label">Spray Bottle</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-two-thirds">
+          <h2 class="title is-3 is-size-4-mobile">Abstract</h2>
+          <div class="content has-text-justified">
+            <ol type="a">
+            Reinforcement learning (RL) has achieved great success in dexterous grasping, significantly improving grasp performance and generalization from simulation to the real world. 
+            However, fine-grained functional grasping, which is essential for downstream manipulation tasks, 
+            remains underexplored and faces several challenges: the complexity of specifying goals and reward functions for functional grasps across diverse objects, 
+            the difficulty of multi-task RL exploration, and the challenge of sim-to-real transfer. 
+            In this work, we propose <strong>DemoFunGrasp</strong> for universal dexterous functional grasping. 
+            We factorize functional grasping conditions into two complementary components — grasping style and affordance — and integrate them into an RL framework that can learn to grasp any object with any functional grasping condition. 
+            To address the multi-task optimization challenge, we leverage a single grasping demonstration and reformulate the RL problem as one-step demonstration editing, substantially enhancing sample efficiency and performance.
+            Experimental results in both simulation and the real world show that DemoFunGrasp generalizes to unseen combinations of objects, affordances, and grasping styles, outperforming baselines in both success rate and functional grasping accuracy. 
+            In addition to strong sim-to-real capability, by incorporating a vision-language model (VLM) for planning, our system achieves autonomous instruction-following grasp execution. 
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-three-thirds">
+          <div class="columns is-centered">
+            <div style="width: 70%; text-align: center;">
+              <img src="./images/overview.png" alt="overview" style="width: 100%;">
+            </div>
+          </div>
+
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-three-thirds">
+              <div class="content has-text-justified">
+                <br>
+                <ol type="a">
+                  <strong>DemoFunGrasp</strong> is a reinforcement learning framework for universal dexterous functional grasping. 
+                  The learned policy generalizes to unseen combinations of objects and functional grasping conditions, and achieves zero-shot sim-to-real transfer. 
+                  For the same object, the policy can produce diverse grasps by adjusting the grasping style and affordance.
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-three-thirds">
+          <div class="columns is-centered">
+            <div style="width: 90%; text-align: center;">
+              <img src="./images/pipeline.png" alt="pipeline" style="width: 100%;">
+            </div>
+          </div>
+
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-three-thirds">
+              <div class="content has-text-justified">
+                <br>
+                <ol type="a">
+                  <strong>Overview of DemoFunGrasp. </strong> The framework consists of four key components:
+                  <li>Demonstration editing: A source demonstration is adapted through end-effector transformation and object-geometry–aware hand style adjustment. </li>
+                  <li>Functional grasping policy learning: An affordance- and style-conditioned one-step RL policy is trained. </li>
+                  <li>Vision-based imitation: The learned policy is transferred to RGB observations for closed-loop, vision-based execution. </li>
+                  <li>Real-world deployment: The vision-based policy is guided by a Vision-Language Model (VLM) for autonomous planning and execution.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- 添加实验结果 -->
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-three-thirds">
+          <div class="columns is-centered">
+            <img src="./images/results.png" alt="dexgraspnet" style="width: 100%;">
+          </div>
+
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-three-thirds">
+              <div class="content has-text-justified">
+                <br>
+                <ol style="list-style-type: none; padding-left: 0;">
+                
+                <li><strong>Simulation and Real-World Results with Human-Annotated and VLM-Predicted Grasping Conditions.</strong></li>
+                <li>Our results show that DemoFunGrasp generalizes effectively to unseen combinations of objects, affordance targets, and grasp styles, 
+                achieving consistently high success rates(GSR), affordance accuracy(IAS), and style adherence(ISS) in both simulation and real-world evaluations.
+                When integrated with a Vision-Language Model for autonomous instruction-following grasp execution, 
+                our system attains an average real-world success rate of 64%, demonstrating that the proposed framework serves as a reliable and capable execution module within VLM-driven robotic systems.</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+<!-- BibTeX 内容 -->
+
+  <section class="section" id="BibTeX">
+    <div class="container content">
+      <h2 style="margin-left: 14%">BibTeX</h2>
+      <pre>
+      <code>
+
+      </code>
+  </pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website template is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a> and adapted from source at <a
+                href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a
+                href="https://umi-on-legs.github.io/">UMI</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
