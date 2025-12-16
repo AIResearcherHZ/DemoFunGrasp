@@ -40,6 +40,15 @@
   </script>
 
   <style>
+    .content.demo-overview ol {
+      margin-left: 0;
+      padding-left: 1.5em;
+    }
+
+    .content.demo-overview li {
+      margin-bottom: 0.8em;
+    }
+
     .video-container {
       display: flex;
       flex-wrap: wrap;
@@ -207,7 +216,7 @@
               <div class="publication-links">
                 <!-- PDF Link. -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2509.22149"
+                  <a href="https://arxiv.org/pdf/2512.13380"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -216,7 +225,7 @@
                   </a>
                 </span>
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2509.22149"
+                  <a href="https://arxiv.org/abs/2512.13380"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -412,19 +421,38 @@
           </div>
 
           <div class="columns is-centered has-text-centered">
-            <div class="column is-three-thirds">
-              <div class="content has-text-justified">
-                <br>
-                <ol type="a">
-                  <strong>Overview of DemoFunGrasp. </strong> The framework consists of four key components:
-                  <li>Demonstration editing: A source demonstration is adapted through end-effector transformation and object-geometry–aware hand style adjustment. </li>
-                  <li>Functional grasping policy learning: An affordance- and style-conditioned one-step RL policy is trained. </li>
-                  <li>Vision-based imitation: The learned policy is transferred to RGB observations for closed-loop, vision-based execution. </li>
-                  <li>Real-world deployment: The vision-based policy is guided by a Vision-Language Model (VLM) for autonomous planning and execution.</li>
-                </ol>
-              </div>
-            </div>
-          </div>
+  <div class="column is-three-thirds">
+    <div class="content has-text-justified demo-overview">
+      <p>
+        <strong>Overview of DemoFunGrasp.</strong>
+        The framework consists of four key components:
+      </p>
+
+      <ol type="a">
+        <li>
+          <strong>Demonstration editing:</strong>
+          A source demonstration is adapted through end-effector transformation and
+          object-geometry–aware hand style adjustment.
+        </li>
+        <li>
+          <strong>Functional grasping policy learning:</strong>
+          An affordance- and style-conditioned one-step RL policy is trained.
+        </li>
+        <li>
+          <strong>Vision-based imitation:</strong>
+          The learned policy is transferred to RGB observations for closed-loop,
+          vision-based execution.
+        </li>
+        <li>
+          <strong>Real-world deployment:</strong>
+          The vision-based policy is guided by a Vision-Language Model (VLM) for
+          autonomous planning and execution.
+        </li>
+      </ol>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </div>
@@ -471,7 +499,15 @@
       <h2 style="margin-left: 14%">BibTeX</h2>
       <pre>
       <code>
-
+        @misc{mao2025universaldexterousfunctionalgrasping,
+          title={Universal Dexterous Functional Grasping via Demonstration-Editing Reinforcement Learning}, 
+          author={Chuan Mao and Haoqi Yuan and Ziye Huang and Chaoyi Xu and Kai Ma and Zongqing Lu},
+          year={2025},
+          eprint={2512.13380},
+          archivePrefix={arXiv},
+          primaryClass={cs.RO},
+          url={https://arxiv.org/abs/2512.13380}, 
+        }
       </code>
   </pre>
     </div>

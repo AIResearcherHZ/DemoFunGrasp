@@ -3,7 +3,7 @@
 <div align="center">
 
 [[Website]](https://beingbeyond.github.io/DemoFunGrasp/)
-[[arXiv]](https://arxiv.org/abs/2509.22149)
+[[arXiv]](https://arxiv.org/abs/2512.13380)
 
 [![Python Version](https://img.shields.io/badge/Python-3.10-blue.svg)]()
 [![GitHub license](https://img.shields.io/badge/MIT-blue)]()
@@ -18,5 +18,13 @@ DemoFunGrasp is a reinforcement learning framework for universal dexterous funct
 # Citation
 If you find our work useful, please consider citing us!
 ```
-
+@misc{mao2025universaldexterousfunctionalgrasping,
+      title={Universal Dexterous Functional Grasping via Demonstration-Editing Reinforcement Learning}, 
+      author={Chuan Mao and Haoqi Yuan and Ziye Huang and Chaoyi Xu and Kai Ma and Zongqing Lu},
+      year={2025},
+      eprint={2512.13380},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO},
+      url={https://arxiv.org/abs/2512.13380}, 
+}
 ```
