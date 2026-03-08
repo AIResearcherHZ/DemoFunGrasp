@@ -1,0 +1,9 @@
+CUDA_VISIBLE_DEVICES=0 python -u run_demofungrasp.py \
+task=grasp \
+train=PPOOneStep \
+hand=fr3_inspire_tac \
+num_envs=30 \
+headless=True \
+task.env.trackingReferenceFile="tasks/grasp_ref_inspire.pkl" \
+task.env.asset.multiObjectList="union_object_dataset/small_debug_set.yaml" \
++debug="replay_demo" \
