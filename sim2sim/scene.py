@@ -35,9 +35,10 @@ def build_model(object_urdf):
     g.name = "object_geom"
     g.type = mujoco.mjtGeom.mjGEOM_MESH
     g.meshname = "object_mesh"
-    g.friction = [1.0, 0.1, 0.005]
+    g.friction = [2.0, 0.5, 0.05]
     g.condim = 6
-    g.solref = [0.002, 1.0]
+    g.solref = [0.005, 1.0]
+    g.margin = 0.002
     g.contype, g.conaffinity = 1, 1
     g.rgba = [0.2, 0.7, 0.3, 1.0]
 

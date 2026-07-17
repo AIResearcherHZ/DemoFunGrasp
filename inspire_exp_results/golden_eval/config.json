@@ -1,0 +1,741 @@
+{
+    "task": {
+        "name": "grasp",
+        "physics_engine": "${..physics_engine}",
+        "hand_config": "${..hand}",
+        "func": {
+            "pcl_with_affordance": false,
+            "affordanceType": "score_based",
+            "use_affordance_reward": false,
+            "affordance_reward_scale": 1.0,
+            "affordance_reward_clip_dist": 10,
+            "style_list": [
+                0,
+                1,
+                2,
+                3
+            ],
+            "num_style_obs": 4,
+            "style_dict_path": "./dataset_processor/inspire_static_style_cali.npy",
+            "if_use_qpos_scale": true,
+            "style_point_type": "centroid_contact_ft",
+            "scale_limit": [
+                0.1,
+                1.9
+            ],
+            "if_use_qpos_delta": true,
+            "qpos_delta_scale": [
+                -0.05,
+                0.05
+            ],
+            "if_use_qpos_reward": false,
+            "qpos_reward_scale": 0.05,
+            "if_use_contact_reward": false,
+            "contact_jud_threshold": 0.01,
+            "contact_reward_scale": 0.5,
+            "if_record_qpos": false,
+            "if_record_contact_pcl_idx": false,
+            "save_path": "save_data",
+            "if_use_close_reward": false,
+            "close_reward_scale": 1.0,
+            "close_reward_threshold": 0.03,
+            "close_type": "strict_one",
+            "metric": "succ_rate",
+            "use_best_label": false
+        },
+        "demo": {
+            "enable": false,
+            "width": 960,
+            "height": 640,
+            "root_path": "./isaac_demo/",
+            "camera_1": {
+                "pos": [
+                    0.5,
+                    0.0,
+                    0.5
+                ],
+                "quat": [
+                    0,
+                    0.7,
+                    0.0,
+                    0.7
+                ]
+            },
+            "camera_2": {
+                "pos": [
+                    0.95,
+                    0.35,
+                    0.6
+                ],
+                "quat": [
+                    0.3535,
+                    0.1465,
+                    -0.8536,
+                    0.3535
+                ]
+            }
+        },
+        "env": {
+            "numEnvs": "${resolve_default:16384,${...num_envs}}",
+            "envSpacing": 1.2,
+            "episodeLength": 40,
+            "randomEpisodeLength": false,
+            "enableDebugVis": false,
+            "aggregateMode": 1,
+            "useRobotVhacd": false,
+            "useObjectVhacd": true,
+            "enableSelfCollision": false,
+            "enableRobotTableCollision": true,
+            "objectFriction": 1.0,
+            "clipObservations": 5.0,
+            "clipActions": 1.0,
+            "deltaActionScale": [
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+            ],
+            "resetPositionRange": [
+                [
+                    0.3,
+                    0.8
+                ],
+                [
+                    -0.35,
+                    0.15
+                ],
+                [
+                    0.1,
+                    0.12
+                ]
+            ],
+            "resetRandomRot": "random",
+            "tableHeightRange": [
+                0.018,
+                0.018
+            ],
+            "resetDofPosRandomInterval": 0.2,
+            "resetHandDofPosFullRange": true,
+            "eeSafeWorkspace": [
+                [
+                    0.15,
+                    -0.45,
+                    0.05
+                ],
+                [
+                    0.95,
+                    0.25,
+                    0.95
+                ]
+            ],
+            "useRelativeControl": false,
+            "armController": "pose",
+            "actionsMaxAngVelArm": 1.57,
+            "actionsMaxAngVelHand": 6.28,
+            "controlFrequencyInv": 1,
+            "observationType": "eefpose+objinitpose+objpcl+affordance+style",
+            "enablePointCloud": true,
+            "pointsPerObject": 512,
+            "rewardType": "resdex",
+            "trackingReferenceFile": "tasks/grasp_ref_inspire.pkl",
+            "trackingReferenceLiftTimestep": 13,
+            "randomizeTrackingReference": true,
+            "randomizeTrackingReferenceRange": [
+                0.05,
+                0.05,
+                0.05,
+                1.57,
+                1.57,
+                1.57
+            ],
+            "randomizeGraspPose": false,
+            "randomizeGraspPoseRange": 1,
+            "asset": {
+                "assetRoot": "./assets/",
+                "multiObject": true,
+                "multiTaskUnidex": false,
+                "objectAssetFile": "DGN_obj/ddg_kit_CoffeeBox/mesh/scaled_models/coacd_006.urdf",
+                "multiObjectList": "union_object_dataset/small_debug_set.yaml",
+                "unidexObjectList": "debug_set.yaml",
+                "useDistractorObjects": false,
+                "distractorObjectAssetFile": "pnp/duck_008.urdf",
+                "distractorObjectFromUnidex": false,
+                "numDistractorObjects": 5,
+                "randomRemoveDistractorObjects": 0.5
+            },
+            "render": {
+                "enable": false,
+                "appearance_realistic": true,
+                "camera_ids": [
+                    0
+                ],
+                "data_type": "rgb+pcl",
+                "instruction_template": "Grasp the object.",
+                "pcl_clip_workspace": [
+                    [
+                        0.25,
+                        -0.45,
+                        0.0
+                    ],
+                    [
+                        0.85,
+                        0.3,
+                        0.6
+                    ]
+                ],
+                "n_pcl_downsample": 2048,
+                "resize": [
+                    256,
+                    256
+                ],
+                "randomize": false,
+                "randomization_params": {
+                    "camera_pos": [
+                        0,
+                        0
+                    ],
+                    "camera_quat": [
+                        0,
+                        0
+                    ],
+                    "depth_range": 0.05,
+                    "object_random_texture": true,
+                    "object_color_choices": [
+                        "red",
+                        "green",
+                        "yellow",
+                        "sky_blue",
+                        "orange",
+                        "white",
+                        "brown",
+                        "pink",
+                        "black"
+                    ],
+                    "color": 0.2,
+                    "num_lights": 3,
+                    "light_intensity": [
+                        0.1,
+                        0.8
+                    ],
+                    "light_ambient": [
+                        0.1,
+                        0.8
+                    ],
+                    "table_xyz": [
+                        0,
+                        0,
+                        0
+                    ]
+                }
+            },
+            "camera_config": {
+                "camera_0": {
+                    "type": "L515",
+                    "mount": "fixed",
+                    "width": 960,
+                    "height": 540,
+                    "depth_range": [
+                        0.25,
+                        3.0
+                    ],
+                    "intrinsics": [
+                        [
+                            677.63903809,
+                            0.0,
+                            489.16671753
+                        ],
+                        [
+                            0.0,
+                            677.48712158,
+                            269.35379028
+                        ],
+                        [
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    ],
+                    "extrinsics": [
+                        [
+                            -0.0269,
+                            0.0942,
+                            -0.995,
+                            0.901
+                        ],
+                        [
+                            1.0,
+                            -0.0134,
+                            -0.0283,
+                            -0.00231
+                        ],
+                        [
+                            -0.016,
+                            -0.995,
+                            -0.0938,
+                            0.127
+                        ],
+                        [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    ]
+                },
+                "camera_1": {
+                    "type": "D435",
+                    "mount": "fixed",
+                    "width": 640,
+                    "height": 480,
+                    "depth_range": [
+                        0.15,
+                        3.0
+                    ],
+                    "intrinsics": [
+                        [
+                            608.10601807,
+                            0.0,
+                            323.16036987
+                        ],
+                        [
+                            0.0,
+                            607.04846191,
+                            245.16740417
+                        ],
+                        [
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    ],
+                    "extrinsics": [
+                        [
+                            -0.95458387,
+                            -0.22931432,
+                            0.19022242,
+                            0.25351984
+                        ],
+                        [
+                            -0.29675754,
+                            0.78866419,
+                            -0.53846426,
+                            0.47084633
+                        ],
+                        [
+                            -0.02654405,
+                            -0.57045923,
+                            -0.82089687,
+                            0.62032344
+                        ],
+                        [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    ]
+                },
+                "camera_2": {
+                    "type": "D435",
+                    "mount": "fixed",
+                    "width": 640,
+                    "height": 480,
+                    "depth_range": [
+                        0.15,
+                        3.0
+                    ],
+                    "intrinsics": [
+                        [
+                            610.1685791,
+                            0.0,
+                            327.0413208
+                        ],
+                        [
+                            0.0,
+                            609.07666016,
+                            245.29025269
+                        ],
+                        [
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    ],
+                    "extrinsics": [
+                        [
+                            0.6464361,
+                            0.58084152,
+                            -0.49471557,
+                            0.89060788
+                        ],
+                        [
+                            0.76291282,
+                            -0.4842839,
+                            0.42829095,
+                            -0.44560813
+                        ],
+                        [
+                            0.00918638,
+                            -0.65428758,
+                            -0.75619004,
+                            0.49017396
+                        ],
+                        [
+                            0.0,
+                            0.0,
+                            0.0,
+                            1.0
+                        ]
+                    ]
+                }
+            }
+        },
+        "task": {
+            "randomize": false,
+            "randomization_params": {
+                "frequency": 720,
+                "observations": {
+                    "range": [
+                        0,
+                        0.002
+                    ],
+                    "range_correlated": [
+                        0,
+                        0.001
+                    ],
+                    "operation": "additive",
+                    "distribution": "gaussian"
+                },
+                "actions": {
+                    "range": [
+                        0.0,
+                        0.001
+                    ],
+                    "range_correlated": [
+                        0,
+                        0.015
+                    ],
+                    "operation": "additive",
+                    "distribution": "gaussian"
+                },
+                "sim_params": {
+                    "gravity": {
+                        "range": [
+                            0,
+                            0.4
+                        ],
+                        "operation": "additive",
+                        "distribution": "gaussian"
+                    }
+                },
+                "actor_params": {
+                    "hand": {
+                        "color": true,
+                        "dof_properties": {
+                            "damping": {
+                                "range": [
+                                    0.3,
+                                    3.0
+                                ],
+                                "operation": "scaling",
+                                "distribution": "loguniform"
+                            },
+                            "stiffness": {
+                                "range": [
+                                    0.75,
+                                    1.5
+                                ],
+                                "operation": "scaling",
+                                "distribution": "loguniform"
+                            },
+                            "lower": {
+                                "range": [
+                                    0,
+                                    0.01
+                                ],
+                                "operation": "additive",
+                                "distribution": "gaussian"
+                            },
+                            "upper": {
+                                "range": [
+                                    0,
+                                    0.01
+                                ],
+                                "operation": "additive",
+                                "distribution": "gaussian"
+                            }
+                        },
+                        "rigid_body_properties": {
+                            "mass": {
+                                "range": [
+                                    0.5,
+                                    1.5
+                                ],
+                                "operation": "scaling",
+                                "distribution": "uniform",
+                                "setup_only": true
+                            }
+                        },
+                        "rigid_shape_properties": {
+                            "friction": {
+                                "num_buckets": 250,
+                                "range": [
+                                    0.7,
+                                    1.3
+                                ],
+                                "operation": "scaling",
+                                "distribution": "uniform"
+                            }
+                        }
+                    },
+                    "object": {
+                        "scale": {
+                            "range": [
+                                0.95,
+                                1.05
+                            ],
+                            "operation": "scaling",
+                            "distribution": "uniform",
+                            "setup_only": true
+                        },
+                        "rigid_body_properties": {
+                            "mass": {
+                                "range": [
+                                    0.5,
+                                    1.5
+                                ],
+                                "operation": "scaling",
+                                "distribution": "uniform",
+                                "setup_only": true
+                            }
+                        },
+                        "rigid_shape_properties": {
+                            "friction": {
+                                "num_buckets": 250,
+                                "range": [
+                                    0.7,
+                                    1.3
+                                ],
+                                "operation": "scaling",
+                                "distribution": "uniform"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sim": {
+            "dt": 0.01667,
+            "decimation": 20,
+            "substeps": 2,
+            "up_axis": "z",
+            "use_gpu_pipeline": "${eq:${...pipeline},\"gpu\"}",
+            "gravity": [
+                0.0,
+                0.0,
+                -9.81
+            ],
+            "physx": {
+                "num_threads": "${....num_threads}",
+                "solver_type": "${....solver_type}",
+                "use_gpu": "${contains:\"cuda\",${....sim_device}}",
+                "num_position_iterations": 8,
+                "num_velocity_iterations": 0,
+                "max_gpu_contact_pairs": 8388608,
+                "num_subscenes": "${....num_subscenes}",
+                "contact_offset": 0.002,
+                "rest_offset": 0.0,
+                "bounce_threshold_velocity": 0.2,
+                "max_depenetration_velocity": 1000,
+                "default_buffer_size_multiplier": 5.0,
+                "contact_collection": 0
+            }
+        }
+    },
+    "train": {
+        "params": {
+            "name": "ppo_onestep",
+            "log_dir": "./inspire_exp_results/",
+            "is_vision": true,
+            "policy": {
+                "backbone_type": "pn",
+                "freeze_backbone": false,
+                "pi_hid_sizes": [
+                    1024,
+                    1024,
+                    512,
+                    512
+                ],
+                "vf_hid_sizes": [
+                    1024,
+                    1024,
+                    512,
+                    512
+                ],
+                "activation": "elu",
+                "pc_shape": [
+                    512,
+                    3
+                ],
+                "pc_emb_dim": 128
+            },
+            "test": "${...test}",
+            "resume": 0,
+            "save_interval": 400,
+            "print_log": true,
+            "max_iterations": 20000,
+            "cliprange": 0.2,
+            "ent_coef": 0,
+            "nsteps": 1,
+            "noptepochs": 5,
+            "nminibatches": 4,
+            "max_grad_norm": 1,
+            "optim_stepsize": 0.0003,
+            "schedule": "adaptive",
+            "desired_kl": 0.016,
+            "gamma": 0.96,
+            "lam": 0.95,
+            "init_noise_std": 0.8,
+            "surrogate_loss_coef": 1.0,
+            "value_loss_coef": 2.0
+        }
+    },
+    "hand": {
+        "name": "fr3_inspire_tac",
+        "robotAssetFile": "inspire_tac/fr3_inspire_tac_L_right_safety_visual_realistic_calibrated_limited.urdf",
+        "robotAssetFileVisualRealistic": "inspire_tac/fr3_inspire_tac_L_right_safety_visual_realistic_calibrated_limited.urdf",
+        "arm_dof_names": [
+            "fr3_joint1",
+            "fr3_joint2",
+            "fr3_joint3",
+            "fr3_joint4",
+            "fr3_joint5",
+            "fr3_joint6",
+            "fr3_joint7"
+        ],
+        "palm_link": "base_link",
+        "fingertips_link": [
+            "right_thumb_4",
+            "right_index_2",
+            "right_middle_2",
+            "right_ring_2",
+            "right_little_2"
+        ],
+        "passive_joints": {
+            "right_thumb_3_joint": {
+                "mimic": "right_thumb_2_joint",
+                "multiplier": 0.6
+            },
+            "right_thumb_4_joint": {
+                "mimic": "right_thumb_2_joint",
+                "multiplier": 0.8
+            },
+            "right_index_2_joint": {
+                "mimic": "right_index_1_joint",
+                "multiplier": 1.05
+            },
+            "right_middle_2_joint": {
+                "mimic": "right_middle_1_joint",
+                "multiplier": 1.05
+            },
+            "right_ring_2_joint": {
+                "mimic": "right_ring_1_joint",
+                "multiplier": 1.05
+            },
+            "right_little_2_joint": {
+                "mimic": "right_little_1_joint",
+                "multiplier": 1.18
+            }
+        },
+        "eef_link": "fr3_link8",
+        "num_arm_dofs": 7,
+        "palm_offset": [
+            0,
+            0,
+            0.05
+        ],
+        "default_dof_pos": [
+            0,
+            0,
+            0,
+            -1.6,
+            0,
+            1.6,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        "num_obs_dict": {
+            "armdof": 7,
+            "handdof": 6,
+            "fulldof": 19,
+            "eefpose": 7,
+            "ftpos": 15,
+            "palmpose": 7,
+            "handposerror": 6,
+            "lastact": 13,
+            "objxyz": 3,
+            "objpose": 7,
+            "objinitpose": 7,
+            "pcfeat": 64,
+            "refaction": 13,
+            "objpcl": 1536,
+            "affordance": 3,
+            "style": 4
+        },
+        "numActions": 13,
+        "hardware_active_hand_dof_names": [
+            "right_little_1_joint",
+            "right_ring_1_joint",
+            "right_middle_1_joint",
+            "right_index_1_joint",
+            "right_thumb_2_joint",
+            "right_thumb_1_joint"
+        ]
+    },
+    "task_name": "${task.name}",
+    "experiment": "",
+    "num_envs": 200,
+    "seed": 42,
+    "torch_deterministic": false,
+    "max_iterations": "",
+    "physics_engine": "physx",
+    "pipeline": "gpu",
+    "sim_device": "cuda:0",
+    "rl_device": "cuda:0",
+    "graphics_device_id": 0,
+    "num_threads": 4,
+    "solver_type": 1,
+    "num_subscenes": 4,
+    "test": true,
+    "test_expert": false,
+    "if_visualize": false,
+    "checkpoint": "/home/xhz/DemoFunGrasp/checkpoint/inspire_example/model_4000.pt",
+    "sigma": "",
+    "multi_gpu": false,
+    "capture_video": false,
+    "capture_video_freq": 1464,
+    "capture_video_len": 100,
+    "force_render": true,
+    "headless": true,
+    "run_name": "golden_eval"
+}
