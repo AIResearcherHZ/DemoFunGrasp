@@ -1,2 +1,4 @@
 # ignore pycache and its contents
 __pycache__/
+assets/textures/
+assets/union_object_dataset/

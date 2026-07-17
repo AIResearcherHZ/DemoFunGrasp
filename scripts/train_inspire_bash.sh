@@ -19,6 +19,6 @@ task.func.pcl_with_affordance=False task.env.enableRobotTableCollision=True \
 if_visualize=False \
 +run_name=debug_train train.params.log_dir="./inspire_exp_results/" \
 test=True task.func.use_best_label=False \
-# checkpoint="/home/lab/code/DemoFunGrasp/checkpoint/inspire_example/model_4000.pt" \
+checkpoint="/home/xhz/DemoFunGrasp/checkpoint/inspire_example/model_4000.pt" \
 # test_set_unseen_cat.yaml \
 

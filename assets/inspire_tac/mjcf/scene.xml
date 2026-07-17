@@ -1,0 +1,215 @@
+<mujoco model="fr3">
+  <compiler angle="radian"/>
+
+  <option gravity="0 0 -9.81" jacobian="sparse" integrator="implicitfast" timestep="0.00026" solver="Newton" iterations="100" tolerance="1e-10" impratio="100" cone="elliptic">
+    <flag multiccd="enable"/>
+  </option>
+
+  <visual>
+    <global offwidth="960" offheight="720" azimuth="140" elevation="-20"/>
+    <quality shadowsize="1024" offsamples="0"/>
+    <headlight ambient="0.4 0.4 0.4" diffuse="0.6 0.6 0.6" specular="0.1 0.1 0.1"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <map shadowclip="1"/>
+    <scale framelength="0.08" framewidth="0.003"/>
+  </visual>
+
+  <asset>
+    <mesh name="meshes__franka__collision__link0" file="assets/meshes__franka__collision__link0.obj"/>
+    <mesh name="meshes__franka__collision__link1" file="assets/meshes__franka__collision__link1.obj"/>
+    <mesh name="meshes__franka__collision__link2" file="assets/meshes__franka__collision__link2.obj"/>
+    <mesh name="meshes__franka__collision__link3" file="assets/meshes__franka__collision__link3.obj"/>
+    <mesh name="meshes__franka__collision__link4" file="assets/meshes__franka__collision__link4.obj"/>
+    <mesh name="meshes__franka__collision__link5" file="assets/meshes__franka__collision__link5.obj"/>
+    <mesh name="meshes__franka__collision__link6" file="assets/meshes__franka__collision__link6.obj"/>
+    <mesh name="meshes__franka__collision__link7" file="assets/meshes__franka__collision__link7.obj"/>
+    <mesh name=".__meshes__L_flange_stable" file="assets/.__meshes__L_flange_stable.stl"/>
+    <mesh name=".__meshes__right_base_link" file="assets/.__meshes__right_base_link.STL"/>
+    <mesh name=".__meshes__calibrated__right_thumb_1" file="assets/.__meshes__calibrated__right_thumb_1.STL"/>
+    <mesh name=".__meshes__calibrated__right_thumb_2" file="assets/.__meshes__calibrated__right_thumb_2.STL"/>
+    <mesh name=".__meshes__calibrated__right_thumb_3" file="assets/.__meshes__calibrated__right_thumb_3.STL"/>
+    <mesh name=".__meshes__calibrated__right_thumb_4" file="assets/.__meshes__calibrated__right_thumb_4.STL"/>
+    <mesh name=".__meshes__right_index_1" file="assets/.__meshes__right_index_1.STL"/>
+    <mesh name=".__meshes__right_index_2" file="assets/.__meshes__right_index_2.STL"/>
+    <mesh name=".__meshes__right_middle_1" file="assets/.__meshes__right_middle_1.STL"/>
+    <mesh name=".__meshes__right_middle_2" file="assets/.__meshes__right_middle_2.STL"/>
+    <mesh name=".__meshes__right_ring_1" file="assets/.__meshes__right_ring_1.STL"/>
+    <mesh name=".__meshes__right_ring_2" file="assets/.__meshes__right_ring_2.STL"/>
+    <mesh name=".__meshes__right_little_1" file="assets/.__meshes__right_little_1.STL"/>
+    <mesh name=".__meshes__right_little_2" file="assets/.__meshes__right_little_2.STL"/>
+    <mesh name="vis_mesh_0" file="assets/merged__meshes__franka__visual__link0_from_dae.obj"/>
+    <mesh name="vis_mesh_1" file="assets/merged__meshes__franka__visual__link1_from_dae.obj"/>
+    <mesh name="vis_mesh_2" file="assets/merged__meshes__franka__visual__link2_from_dae.obj"/>
+    <mesh name="vis_mesh_3" file="assets/merged__meshes__franka__visual__link3_from_dae.obj"/>
+    <mesh name="vis_mesh_4" file="assets/merged__meshes__franka__visual__link4_from_dae.obj"/>
+    <mesh name="vis_mesh_5" file="assets/merged__meshes__franka__visual__link5_from_dae.obj"/>
+    <mesh name="vis_mesh_6" file="assets/merged__meshes__franka__visual__link6_from_dae.obj"/>
+    <mesh name="vis_mesh_7" file="assets/merged__meshes__franka__visual__link7_from_dae.obj"/>
+    <mesh name="vis_mesh_8" file="assets/merged__.__meshes__L_flange_stable.obj"/>
+    <mesh name="vis_mesh_9" file="assets/merged__.__meshes__inspire_color__right_base_link.obj"/>
+    <mesh name="vis_mesh_10" file="assets/merged__.__meshes__calibrated__right_thumb_1.obj"/>
+    <mesh name="vis_mesh_11" file="assets/merged__.__meshes__calibrated__inspire_color__right_thumb_2.obj"/>
+    <mesh name="vis_mesh_12" file="assets/merged__.__meshes__calibrated__inspire_color__right_thumb_3.obj"/>
+    <mesh name="vis_mesh_13" file="assets/merged__.__meshes__calibrated__inspire_color__right_thumb_4.obj"/>
+    <mesh name="vis_mesh_14" file="assets/merged__.__meshes__inspire_color__right_index_1.obj"/>
+    <mesh name="vis_mesh_15" file="assets/merged__.__meshes__inspire_color__right_index_2.obj"/>
+    <mesh name="vis_mesh_16" file="assets/merged__.__meshes__inspire_color__right_middle_1.obj"/>
+    <mesh name="vis_mesh_17" file="assets/merged__.__meshes__inspire_color__right_middle_2.obj"/>
+    <mesh name="vis_mesh_18" file="assets/merged__.__meshes__inspire_color__right_ring_1.obj"/>
+    <mesh name="vis_mesh_19" file="assets/merged__.__meshes__inspire_color__right_ring_2.obj"/>
+    <mesh name="vis_mesh_20" file="assets/merged__.__meshes__inspire_color__right_little_1.obj"/>
+    <mesh name="vis_mesh_21" file="assets/merged__.__meshes__inspire_color__right_little_2.obj"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="5 5 0.1" type="plane" rgba="0.35 0.38 0.42 1"/>
+    <geom name="table" size="0.5 0.5 0.15" pos="0.6 0 -0.132" type="box" rgba="0.55 0.45 0.35 1"/>
+    <camera name="global_cam" pos="1.05 0 0.95" quat="0.684499 0.177372 0.177372 0.684499" fovy="50"/>
+    <light name="light_0" pos="0 0 3" dir="0 0 -1" directional="true" castshadow="false" diffuse="0.5 0.5 0.5" specular="0 0 0"/>
+    <body name="fr3_link0" gravcomp="1">
+      <geom name="robot_geom_0" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link0"/>
+      <geom name="vis_0" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_0"/>
+      <body name="fr3_link1" pos="0 0 0.333" gravcomp="1">
+        <joint name="fr3_joint1" pos="0 0 0" axis="0 0 1" range="-2.54 2.54" actuatorfrcrange="-87 87" armature="0.001" damping="0" frictionloss="0.01"/>
+        <geom name="robot_geom_1" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link1"/>
+        <geom name="vis_1" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_1"/>
+        <body name="fr3_link2" quat="0.707107 -0.707107 0 0" gravcomp="1">
+          <joint name="fr3_joint2" pos="0 0 0" axis="0 0 1" range="-1.58 1.58" actuatorfrcrange="-87 87" armature="0.001" damping="0" frictionloss="0.01"/>
+          <geom name="robot_geom_2" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link2"/>
+          <geom name="vis_2" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_2"/>
+          <body name="fr3_link3" pos="0 -0.316 0" quat="0.707107 0.707107 0 0" gravcomp="1">
+            <joint name="fr3_joint3" pos="0 0 0" axis="0 0 1" range="-2.69 2.69" actuatorfrcrange="-87 87" armature="0.001" damping="0" frictionloss="0.01"/>
+            <geom name="robot_geom_3" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link3"/>
+            <geom name="vis_3" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_3"/>
+            <body name="fr3_link4" pos="0.0825 0 0" quat="0.707107 0.707107 0 0" gravcomp="1">
+              <joint name="fr3_joint4" pos="0 0 0" axis="0 0 1" range="-2.84 -0.35" actuatorfrcrange="-87 87" armature="0.001" damping="0" frictionloss="0.01"/>
+              <geom name="robot_geom_4" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link4"/>
+              <geom name="vis_4" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_4"/>
+              <body name="fr3_link5" pos="-0.0825 0.384 0" quat="0.707107 -0.707107 0 0" gravcomp="1">
+                <joint name="fr3_joint5" pos="0 0 0" axis="0 0 1" range="-2.6 2.6" actuatorfrcrange="-12 12" armature="0.001" damping="0" frictionloss="0.01"/>
+                <geom name="robot_geom_5" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link5"/>
+                <geom name="vis_5" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_5"/>
+                <body name="fr3_link6" quat="0.707107 0.707107 0 0" gravcomp="1">
+                  <joint name="fr3_joint6" pos="0 0 0" axis="0 0 1" range="0.75 4.31" actuatorfrcrange="-12 12" armature="0.001" damping="0" frictionloss="0.01"/>
+                  <geom name="robot_geom_6" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link6"/>
+                  <geom name="vis_6" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_6"/>
+                  <body name="fr3_link7" pos="0.088 0 0" quat="0.707107 0.707107 0 0" gravcomp="1">
+                    <joint name="fr3_joint7" pos="0 0 0" axis="0 0 1" range="-2.81 2.81" actuatorfrcrange="-12 12" armature="0.001" damping="0" frictionloss="0.01"/>
+                    <geom name="robot_geom_7" type="mesh" conaffinity="0" group="3" solref="0.002" mesh="meshes__franka__collision__link7"/>
+                    <geom name="vis_7" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_7"/>
+                    <body name="fr3_link8" pos="0 0 0.107" gravcomp="1">
+                      <body name="L_flange" quat="9.38184e-07 0.707105 0.707108 9.38187e-07" gravcomp="1">
+                        <geom name="robot_geom_8" pos="0 0 -0.009" quat="1.32679e-06 1 0 0" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__L_flange_stable"/>
+                        <geom name="vis_8" pos="0 0 -0.009" quat="1.32679e-06 1 0 0" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_8"/>
+                        <body name="wrist" pos="0 0.0415 -0.068767" quat="9.38184e-07 9.38187e-07 0.707108 0.707105" gravcomp="1">
+                          <body name="base_link" quat="0.000796327 1 0 0" gravcomp="1">
+                            <geom name="robot_geom_9" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_base_link"/>
+                            <geom name="vis_9" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_9"/>
+                            <body name="right_thumb_1" pos="0.0269 0.02101 -0.069" quat="1.34924e-11 3.67321e-06 1 3.67321e-06" gravcomp="1">
+                              <joint name="right_thumb_1_joint" pos="0 0 0" axis="0 0 -1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 1.15" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                              <geom name="robot_geom_10" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__calibrated__right_thumb_1"/>
+                              <geom name="vis_10" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_10"/>
+                              <body name="right_thumb_2" pos="-0.0063016 0.011924 0.003" quat="0.122797 0.122797 0.696364 0.696361" gravcomp="1">
+                                <joint name="right_thumb_2_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 0.35" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                                <geom name="robot_geom_11" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__calibrated__right_thumb_2"/>
+                                <geom name="vis_11" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_11"/>
+                                <body name="right_thumb_3" pos="0.034968 0.021325 -0.0015" gravcomp="1">
+                                  <joint name="right_thumb_3_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 0.21" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                                  <geom name="robot_geom_12" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__calibrated__right_thumb_3"/>
+                                  <geom name="vis_12" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_12"/>
+                                  <body name="right_thumb_4" pos="0.018887 0.011501 -0.0002" gravcomp="1">
+                                    <joint name="right_thumb_4_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 0.28" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                                    <geom name="robot_geom_13" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__calibrated__right_thumb_4"/>
+                                    <geom name="vis_13" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_13"/>
+                                    <body name="right_thumb_tip" pos="0.025 0.02 -0.007" gravcomp="1"/>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                            <body name="right_index_1" pos="0.038679 0.00056467 -0.1564" quat="0.508647 -0.491199 0.491201 -0.508648" gravcomp="1">
+                              <joint name="right_index_1_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 0.9" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                              <geom name="robot_geom_14" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_index_1"/>
+                              <geom name="vis_14" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_14"/>
+                              <body name="right_index_2" pos="-0.0016312 0.032734 -0.00055" gravcomp="1">
+                                <joint name="right_index_2_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 0.945" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                                <geom name="robot_geom_15" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_index_2"/>
+                                <geom name="vis_15" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_15"/>
+                                <body name="right_index_tip" pos="-0.007 0.053 -0.006" gravcomp="1"/>
+                              </body>
+                            </body>
+                            <body name="right_middle_1" pos="0.0171 0.00056467 -0.157" quat="0.499998 -0.5 0.500002 -0.5" gravcomp="1">
+                              <joint name="right_middle_1_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 0.95" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                              <geom name="robot_geom_16" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_middle_1"/>
+                              <geom name="vis_16" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_16"/>
+                              <body name="right_middle_2" pos="-0.0028436 0.032651 -0.00055" gravcomp="1">
+                                <joint name="right_middle_2_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 0.9975" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                                <geom name="robot_geom_17" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_middle_2"/>
+                                <geom name="vis_17" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_17"/>
+                                <body name="right_middle_tip" pos="-0.007 0.057 -0.006" gravcomp="1"/>
+                              </body>
+                            </body>
+                            <body name="right_ring_1" pos="-0.0045302 0.00056467 -0.15683" quat="0.486728 -0.512927 0.512929 -0.48673" gravcomp="1">
+                              <joint name="right_ring_1_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 1.15" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                              <geom name="robot_geom_18" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_ring_1"/>
+                              <geom name="vis_18" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_18"/>
+                              <body name="right_ring_2" pos="-0.0031431 0.032624 -0.00055" gravcomp="1">
+                                <joint name="right_ring_2_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 1.2075" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                                <geom name="robot_geom_19" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_ring_2"/>
+                                <geom name="vis_19" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_19"/>
+                                <body name="right_ring_tip" pos="-0.007 0.053 -0.006" gravcomp="1"/>
+                              </body>
+                            </body>
+                            <body name="right_little_1" pos="-0.025916 0.00056467 -0.15365" quat="0.457175 -0.539434 0.511051 -0.488701" gravcomp="1">
+                              <joint name="right_little_1_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 1.3" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                              <geom name="robot_geom_20" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_little_1"/>
+                              <geom name="vis_20" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_20"/>
+                              <body name="right_little_2" pos="-0.005182 0.032363 -0.00055" quat="0.629101 0 0 0.777323" gravcomp="1">
+                                <joint name="right_little_2_joint" pos="0 0 0" axis="0 0 1" solreflimit="0.002" solimplimit="0.99 0.999 0.0005" range="0 1.365" actuatorfrcrange="-1 1" armature="0.001" damping="1" frictionloss="0.01"/>
+                                <geom name="robot_geom_21" type="mesh" conaffinity="0" group="3" solref="0.002" mesh=".__meshes__right_little_2"/>
+                                <geom name="vis_21" type="mesh" contype="0" conaffinity="0" group="2" mass="0" mesh="vis_mesh_21"/>
+                                <body name="right_little_tip" pos="0.043 -0.001 -0.006" quat="0.707105 0 0 -0.707108" gravcomp="1"/>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="eef_target" pos="0.4 0 0.5" mocap="true">
+      <inertial pos="0 0 0" mass="0.001" diaginertia="1e-8 1e-8 1e-8"/>
+      <geom name="eef_target_geom" type="sphere" size="0.05" contype="0" conaffinity="0" group="1" mass="0" rgba="1 0.5 0 0.5"/>
+      <geom type="cylinder" size="0.002" fromto="0 0 0 0.1 0 0" contype="0" conaffinity="0" group="1" mass="0" rgba="1 0 0 1"/>
+      <geom type="cylinder" size="0.002" fromto="0 0 0 0 0.1 0" contype="0" conaffinity="0" group="1" mass="0" rgba="0 1 0 1"/>
+      <geom type="cylinder" size="0.002" fromto="0 0 0 0 0 0.1" contype="0" conaffinity="0" group="1" mass="0" rgba="0 0 1 1"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <position name="fr3_joint1" joint="fr3_joint1" ctrlrange="-2.54 2.54" kp="16000" kv="600" forcerange="-87 87"/>
+    <position name="fr3_joint2" joint="fr3_joint2" ctrlrange="-1.58 1.58" kp="16000" kv="600" forcerange="-87 87"/>
+    <position name="fr3_joint3" joint="fr3_joint3" ctrlrange="-2.69 2.69" kp="16000" kv="600" forcerange="-87 87"/>
+    <position name="fr3_joint4" joint="fr3_joint4" ctrlrange="-2.84 -0.35" kp="16000" kv="600" forcerange="-87 87"/>
+    <position name="fr3_joint5" joint="fr3_joint5" ctrlrange="-2.6 2.6" kp="16000" kv="600" forcerange="-12 12"/>
+    <position name="fr3_joint6" joint="fr3_joint6" ctrlrange="0.75 4.31" kp="16000" kv="600" forcerange="-12 12"/>
+    <position name="fr3_joint7" joint="fr3_joint7" ctrlrange="-2.81 2.81" kp="16000" kv="600" forcerange="-12 12"/>
+    <position name="right_index_1_joint" joint="right_index_1_joint" ctrlrange="0 0.9" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_index_2_joint" joint="right_index_2_joint" ctrlrange="0 0.945" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_little_1_joint" joint="right_little_1_joint" ctrlrange="0 1.3" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_little_2_joint" joint="right_little_2_joint" ctrlrange="0 1.365" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_middle_1_joint" joint="right_middle_1_joint" ctrlrange="0 0.95" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_middle_2_joint" joint="right_middle_2_joint" ctrlrange="0 0.9975" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_ring_1_joint" joint="right_ring_1_joint" ctrlrange="0 1.15" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_ring_2_joint" joint="right_ring_2_joint" ctrlrange="0 1.2075" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_thumb_1_joint" joint="right_thumb_1_joint" ctrlrange="0 1.15" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_thumb_2_joint" joint="right_thumb_2_joint" ctrlrange="0 0.35" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_thumb_3_joint" joint="right_thumb_3_joint" ctrlrange="0 0.21" kp="600" kv="20" forcerange="-1 1"/>
+    <position name="right_thumb_4_joint" joint="right_thumb_4_joint" ctrlrange="0 0.28" kp="600" kv="20" forcerange="-1 1"/>
+  </actuator>
+</mujoco>
