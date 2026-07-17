@@ -1,0 +1,34 @@
+name: "fr3_wuji_hand2"
+robotAssetFile: "wuji_hand2/fr3_wuji_hand2_right.urdf"
+robotAssetFileVisualRealistic: "wuji_hand2/fr3_wuji_hand2_right.urdf"
+arm_dof_names: ['fr3_joint1', 'fr3_joint2', 'fr3_joint3', 'fr3_joint4', 'fr3_joint5', 'fr3_joint6', 'fr3_joint7']
+palm_link: "r_base_link"
+fingertips_link: ['r_thumb_tip', 'r_index_finger_tip', 'r_middle_finger_tip', 'r_ring_finger_tip', 'r_pinky_tip']
+eef_link: "fr3_link8"
+num_arm_dofs: 7
+palm_offset: [0, 0, 0.07]
+default_dof_pos: [0, 0, 0, -1.6, 0, 1.6, 0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0]
+num_obs_dict:
+  "armdof": 7
+  "handdof": 20
+  "fulldof": 27
+  "eefpose": 7
+  "ftpos": 15
+  "palmpose": 7
+  "handposerror": 20
+  "lastact": 27
+  "objxyz": 3
+  "objpose": 7
+  "objinitpose": 7
+  "pcfeat": 64
+  "refaction": 27
+  "objpcl": 1536 # 512*3
+  "affordance": 3 # xyz
+  "style": 4
+
+numActions: 27
+hardware_active_hand_dof_names: ['r_index_finger_mcp_flex', 'r_index_finger_mcp_abd', 'r_index_finger_pip', 'r_index_finger_dip',
+  'r_middle_finger_mcp_flex', 'r_middle_finger_mcp_abd', 'r_middle_finger_pip', 'r_middle_finger_dip',
+  'r_pinky_mcp_flex', 'r_pinky_mcp_abd', 'r_pinky_pip', 'r_pinky_dip',
+  'r_ring_finger_mcp_flex', 'r_ring_finger_mcp_abd', 'r_ring_finger_pip', 'r_ring_finger_dip',
+  'r_thumb_cmc_flex', 'r_thumb_cmc_abd', 'r_thumb_mcp', 'r_thumb_ip']
