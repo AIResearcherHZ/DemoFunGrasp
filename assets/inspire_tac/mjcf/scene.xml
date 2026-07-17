@@ -1,7 +1,7 @@
 <mujoco model="fr3">
   <compiler angle="radian"/>
 
-  <option gravity="0 0 -9.81" jacobian="sparse" integrator="implicitfast" timestep="0.00026" solver="Newton" iterations="100" tolerance="1e-10" impratio="100" cone="elliptic">
+  <option gravity="0 0 -9.81" jacobian="sparse" integrator="implicit" timestep="0.0002" solver="Newton" iterations="100" tolerance="1e-10" impratio="100" cone="elliptic">
     <flag multiccd="enable"/>
   </option>
 
